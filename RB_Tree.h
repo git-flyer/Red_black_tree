@@ -10,6 +10,7 @@
 template<typename T>
 class RB_Tree {
 public:
+    RB_Tree_Node<T>* root;         //根节点
     RB_Tree();
     RB_Tree(T Root_data);   //红黑树构造函数
     int size();
@@ -18,7 +19,6 @@ public:
     bool find(T find_data);
 private:
     int num;            //已插入结点数
-    RB_Tree_Node<T>* root;         //根节点
     void Fix_Tree(RB_Tree_Node<T>* curr_Node);
     void Delete_Fixup(RB_Tree_Node<T>* replace, RB_Tree_Node<T>* father);
     RB_Tree_Node<T>* Find_Successor_Node(RB_Tree_Node<T>* curr_Node);
@@ -110,7 +110,8 @@ void RB_Tree<T>::Left_Rotate(RB_Tree_Node<T>* curr_Node) {
     RB_Tree_Node<T>* father = curr_Node->father;
     RB_Tree_Node<T>* right = curr_Node->right;
     curr_Node->right = right->left;
-    right->left->father = curr_Node;
+    if(right->left)
+        right->left->father = curr_Node;
     right->father = father;
     if (father == nullptr)
         root = right;
@@ -135,7 +136,8 @@ void RB_Tree<T>::Right_Rotate(RB_Tree_Node<T>* curr_Node) {
     RB_Tree_Node<T>* father = curr_Node->father;
     RB_Tree_Node<T>* left = curr_Node->left;
     curr_Node->left = left->right;
-    left->right->father = curr_Node;
+    if(left->right)
+        left->right->father = curr_Node;
     left->father = father;
     if (father == nullptr)
         root = left;
