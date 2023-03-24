@@ -9,7 +9,6 @@ template <typename T> class RB_Tree_Node{
 public:
     //构造析构
     RB_Tree_Node(T t_data);
-    ~RB_Tree_Node();
     //左右孩子和父亲结点
     RB_Tree_Node *left;
     RB_Tree_Node *right;
