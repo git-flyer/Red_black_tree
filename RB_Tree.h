@@ -13,10 +13,10 @@ public:
     RB_Tree_Node<T>* root;         //根节点
     RB_Tree();
     RB_Tree(T Root_data);   //红黑树构造函数
-    int size();
-    void Insert_Node(T insert_data);
-    bool Delete_Node(T delete_data);
-    bool find(T find_data);
+    int Size();
+    void Insert(T insert_data);
+    bool Delete(T delete_data);
+    bool Find(T find_data);
 private:
     int num;            //已插入结点数
     void Fix_Tree(RB_Tree_Node<T>* curr_Node);
@@ -44,7 +44,7 @@ RB_Tree<T>::RB_Tree(T root_data) :root(nullptr) {
 
 
 template <typename T>
-int RB_Tree<T>::size() {
+int RB_Tree<T>::Size() {
     return num;
 }
 
@@ -55,7 +55,7 @@ int RB_Tree<T>::size() {
 // 返回值：无
 /************************************************************************/
 template<typename T>
-void RB_Tree<T>::Insert_Node(T insert_data) {
+void RB_Tree<T>::Insert(T insert_data) {
     //插入一个红色结点后，如果父亲结点也是红色，则必须调整新插入的结点，红红不能相遇
     RB_Tree_Node<T>* tmp_node = root;
     //一开始如果红黑树的根结点为null，则插入一个黑色的根结点
@@ -455,7 +455,7 @@ void RB_Tree<T>::Delete_Fixup(RB_Tree_Node<T>* replace, RB_Tree_Node<T>* father)
 // 返回值：1表示删除成功 -1表示删除失败
 /************************************************************************/
 template<typename T>
-bool RB_Tree<T>::Delete_Node(T delete_data) {
+bool RB_Tree<T>::Delete(T delete_data) {
     RB_Tree_Node<T>* tmp_Node = root;
     //当查找结点不为空且结点值不等于要删除的值时
     while (tmp_Node && tmp_Node->data != delete_data) {
@@ -494,5 +494,22 @@ RB_Tree_Node<T>* RB_Tree<T>::Find_Successor_Node(RB_Tree_Node<T>* curr_Node) {
     return tmp_Node;
 }
 
-
+/************************************************************************/
+/* 函数功能：查找某个值是否在树中                               */
+// 入口参数：节点值
+// 返回值：True  or  false
+/************************************************************************/
+template<typename T>
+bool RB_Tree<T>::Find(T data) {
+    RB_Tree_Node<T>* r = root;
+    while (r) {
+        if (r->data == data)
+            return true;
+        else if (r->data < data)
+            r = r->right;
+        else
+            r = r->left;
+    }
+    return false;
+}
 #endif //RB_TREE_RB_TREE_H
