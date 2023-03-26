@@ -9,6 +9,7 @@ public:
 	void Insert(T data);
 	bool Delete(T data);
 	bool isPrime(int num);
+	bool Find(T data);
 	size_t getHash(T data);
 private:
 	//哈希表的长度以及小于表长的最大素数
@@ -48,6 +49,12 @@ bool HashTable<T, H>::isPrime(int num) {
 		}
 	}
 	return flag;
+}
+
+template <typename T, typename H = std::hash<T>>
+bool HashTable<T, H>::Find(T data) {
+	int hash_code = getHash(data) % this->maxPrime;
+	return this->Nodes[hash_code].Find(data);
 }
 
 template <typename T, typename H = std::hash<T>>
