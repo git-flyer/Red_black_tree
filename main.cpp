@@ -33,5 +33,8 @@ int main() {
     for (int i = 1; i < 10; ++i)
         h.Insert(i);
     h.Delete(8);
+    for (int i = 1; i < 10; ++i){
+        cout << h.Find(i) << endl;
+    }
     return 0;
 }
