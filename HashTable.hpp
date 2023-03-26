@@ -12,7 +12,7 @@ public:
 	bool Find(T data);
 	size_t getHash(T data);
 private:
-	//¹şÏ£±íµÄ³¤¶ÈÒÔ¼°Ğ¡ÓÚ±í³¤µÄ×î´óËØÊı
+	//å“ˆå¸Œè¡¨çš„é•¿åº¦ä»¥åŠå°äºè¡¨é•¿çš„æœ€å¤§ç´ æ•°
 	int length, maxPrime;
 	std::vector<RB_Tree<T> > Nodes;
 };
@@ -22,14 +22,15 @@ template <typename T, typename H = std::hash<T>>
 HashTable<T, H>::HashTable(int length) {
 	this->length = length;
 	Nodes.resize(this->length);
-	for (int i = this->length - 1; i >= 0; i--) {
+	for (int i = this->length - 1; i >= 2; i--) {
 		if (this->isPrime(i)) {
 			this->maxPrime = i;
+			break;
 		}
 	}
 }
 
-//ÅĞ¶ÏÊÇ·ñÊÇËØÊı
+//åˆ¤æ–­æ˜¯å¦æ˜¯ç´ æ•°
 template <typename T, typename H = std::hash<T>>
 bool HashTable<T, H>::isPrime(int num) {
 	bool flag = true;
@@ -41,7 +42,7 @@ bool HashTable<T, H>::isPrime(int num) {
 	}
 	else {
 		for (int i = 2; i < num - 1; i++) {
-			//numÄÜ±»iÕû³ı 
+			//numèƒ½è¢«iæ•´é™¤ 
 			if (num % i == 0) {
 				flag = false;
 				break;
