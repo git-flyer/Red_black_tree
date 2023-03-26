@@ -59,8 +59,10 @@ void RB_Tree<T>::Insert(T insert_data) {
     //插入一个红色结点后，如果父亲结点也是红色，则必须调整新插入的结点，红红不能相遇
     RB_Tree_Node<T>* tmp_node = root;
     //一开始如果红黑树的根结点为null，则插入一个黑色的根结点
-    if (!root)
+    if (!root) {
         root = new RB_Tree_Node<T>(insert_data);
+        this->num = 1;
+    }
     while (tmp_node) {
         //插入结点的值大于当前结点的值
         if (insert_data > tmp_node->data) {

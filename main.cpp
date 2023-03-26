@@ -2,15 +2,15 @@
 #include <vector>
 #include <queue>
 #include "RB_Tree.h"
-
+#include "HashTable.hpp"
 using namespace std;
 
 int main() {
     RB_Tree<int> r = RB_Tree<int>(1);
     for (int i = 2; i <= 10; ++i) {
-        r.Insert_Node(i);
+        r.Insert(i);
     }
-    r.Delete_Node(6);
+    r.Delete(6);
     queue<RB_Tree_Node<int> *> q;
     RB_Tree_Node<int> *tmp = r.root;
     q.push(tmp);
@@ -29,5 +29,9 @@ int main() {
         cout << "\n";
     }
     system("pause");
+    return 0;
+    HashTable<int> h = *(new HashTable<int>(10));
+    for (int i = 1; i < 100; ++i)
+        h.Insert(i);
     return 0;
 }
