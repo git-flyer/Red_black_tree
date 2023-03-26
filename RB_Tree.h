@@ -469,6 +469,7 @@ bool RB_Tree<T>::Delete(T delete_data) {
     //如果找到了要删除的结点则直接删除
     if (tmp_Node) {
         Erase_Node(tmp_Node);
+        --this->num;
         return true;
     }
     //没找到则返回false表示删除失败
