@@ -29,7 +29,7 @@ private:
 
 template<typename T>
 RB_Tree<T>::RB_Tree() :root(nullptr), num(0) {
-};
+}
 
 //对于一个空的红黑树，构造函数首先应该建立一个根结点
 template<typename T>
@@ -40,7 +40,7 @@ RB_Tree<T>::RB_Tree(T root_data) :root(nullptr) {
         root = p;
         num = 1;
     }
-};
+}
 
 
 template <typename T>
